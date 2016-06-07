@@ -7,6 +7,7 @@ welcome to our little coding challenge. As you were informed, the survey will ta
 
 *Setup:*
 > - You will find the sources and the compiled APK of a small sample project. 
+> - If you are familiar with Android you should download only the Android Studio IDE package otherwise you could download a package including the Android SDK as well. Download the Android Studio from this link: https://developer.android.com/studio/index.html
 > - **Please mind the time**. If you check in your code more than 3h after you are being sent the repo-link you will get a penalty
 
 
