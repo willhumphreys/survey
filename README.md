@@ -26,7 +26,7 @@ welcome to our little coding challenge. As you were informed, the survey will ta
 > 5. Implement a functionality with which the user can update a skill.
 > 6. Modify the app to tell your own story you would like to share with futuretek.
 
-When you are done, check in your code to a github project of yours, compile a working APK, write a short release-document and mail to challenge@futuretek.ch with the link to your project. Do not amend after you have mailed.
+When you are done, check in your code to a github project of yours, compile a working APK(project/app/build/outputs/apk/app-debug.apk), write a short release-document and mail to challenge@futuretek.ch with the link to your project. Do not amend after you have mailed.
 
 Please note that we do not exclusively rate how many of the points you have covered but also approach, documentation and quality. 
 
