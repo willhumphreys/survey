@@ -19,6 +19,8 @@ import java.util.List;
 public class BaseActivity extends Activity {
     private Database db;
     private String activityClassName;
+    private boolean firstTimeOnThisActivity;
+    private boolean firstTimeOnThisApp;
     protected Database getDatabase(){
         return db;
     }
@@ -32,17 +34,28 @@ public class BaseActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        boolean firstTime = db.getBoolean(activityClassName);
-        if(!firstTime){
+        firstTimeOnThisApp = db.getBoolean("firstTimeOnThisApp");
+        firstTimeOnThisActivity = db.getBoolean(activityClassName);
+        if(!firstTimeOnThisActivity){
             db.put(activityClassName, true);
+        }
+        if(!firstTimeOnThisApp){
+            db.put("firstTimeOnThisApp", true);
             db.putSkill("Android");
             db.putSkill("Java");
         }
+    }
 
+    public boolean isFirstTimeOnThisApp(){
+        return firstTimeOnThisApp;
+    }
+
+    public boolean isFirstTimeOnThisActivity(){
+        return firstTimeOnThisActivity;
     }
 
     protected void animateText(List<String> textArray, final AnimationListDone doneListener) {
-        new TextAnimator(db.getBoolean(activityClassName), this, R.id.scrollView, R.id.textLayout, textArray, new AnimationListDone() {
+        new TextAnimator(isFirstTimeOnThisActivity(), this, R.id.scrollView, R.id.textLayout, textArray, new AnimationListDone() {
             public void done() {
                 runOnUiThread(new Runnable() {
                     public void run() {
@@ -53,7 +66,7 @@ public class BaseActivity extends Activity {
         });
     }
     protected void animateText(List<String> textArray) {
-        new TextAnimator(db.getBoolean(activityClassName), this, R.id.scrollView, R.id.textLayout, textArray);
+        new TextAnimator(isFirstTimeOnThisActivity(), this, R.id.scrollView, R.id.textLayout, textArray);
     }
 
     protected void openInputDialog(final View.OnClickListener onClickListener) {
