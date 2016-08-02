@@ -44,7 +44,7 @@ public class Database extends SQLiteOpenHelper {
 	}
 
 	public void put(String key, String value) {
-		if(get(key)!=null){
+		if(exists(key)){
 			update(key, value);
 		}else{
 			SQLiteDatabase db = this.getWritableDatabase();
@@ -68,6 +68,17 @@ public class Database extends SQLiteOpenHelper {
 		}
 		db.close();
 		return null;
+	}
+	
+	public boolean exists(String key) {
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.query(tableAdminSettings, COLUMNS, " id = ?", new String[] { String.valueOf(key) }, null, null, null, null);
+		if(cursor!=null && cursor.getCount()>0) {
+			db.close();
+			return true;
+		}
+		db.close();
+		return false;
 	}
 
 	public void put(String key, boolean value){
