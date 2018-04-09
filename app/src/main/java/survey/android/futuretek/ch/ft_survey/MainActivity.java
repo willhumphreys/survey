@@ -84,15 +84,19 @@ public class MainActivity extends BaseActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    if (userName == null || userName.isEmpty()) {
-                        List<String> textArray = new ArrayList<String>(1);
+                    String userNameInputText = userInput.getText().toString().trim();
+                    if ((userName == null || userName.isEmpty()) && userNameInputText.isEmpty()) {
+                        List<String> textArray = new ArrayList<>(1);
                         textArray.add("Didn't get your name...");
+                        textArray.add("What's your name?");
                         animateText(textArray, new AnimationListDone() {
                             public void done() {
-                                activateNextButton();
+                                requestUserName();
                             }
                         });
+
                     } else {
+                        userName = userNameInputText;
                         getDatabase().put("usersName", userName);
                         List<String> textArray = new ArrayList<String>(2);
                         textArray.add("Ah, nice.");
